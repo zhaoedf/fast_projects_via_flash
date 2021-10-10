@@ -1,0 +1,13 @@
+
+# classification
+classification/__pycache__
+classification/lightning_logs
+classification/*.pt
+
+
+# segmentation
+segmentation/*/__pycache__
+segmentation/__pycache__
+segmentation/*.pt
+segmentation/lightning_logs
+segmentation/data
