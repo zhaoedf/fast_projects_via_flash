@@ -10,4 +10,3 @@ segmentation/*/__pycache__
 segmentation/__pycache__
 segmentation/*.pt
 segmentation/lightning_logs
-segmentation/data
