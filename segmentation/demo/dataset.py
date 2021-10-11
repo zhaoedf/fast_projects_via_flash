@@ -51,7 +51,10 @@ class SegDataset(Dataset):
         # HWC to CHW
         img_trans = img_nd.transpose((2, 0, 1))
         if img_trans.max() > 1:
-            img_trans = img_trans / 255
+            img_trans = img_trans / 255  
+            # this step will change dtype from uint8 -> float64. use "//" to maintain uint8.
+            # when in torch training, "/ or //" make no difference.
+            # but when it comes to saving the img_trans, it matters!
 
         return img_trans
 

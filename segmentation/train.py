@@ -13,9 +13,14 @@ from utils.dice_coeff import Dice_coeff
 # 1. Create the DataModule
 # --------------------------------------------
 nb_classes = 2 
-# for 2-class problem, can not be set to 1.
-# and the corresponding model outputs mask will the shape of (bs,2,w,h) instead of (bs,w,h)
-# 0: neg ; 1:pos
+'''
+    for 2-class problem, can not be set to 1.
+    and the corresponding model outputs mask will the shape of (bs,2,w,h) instead of (bs,w,h)
+    0: neg ; 1:pos
+    
+    *mask has to be 1-channel image! and [0,255] indicates different class*.
+    *and has to have the same name as the img.*
+'''
 img_size = (512,512)
 # https://lightning-flash.readthedocs.io/en/stable/reference/semantic_segmentation.html#semantic-segmentation
 # https://lightning-flash.readthedocs.io/en/stable/api/generated/flash.image.segmentation.data.SemanticSegmentationData.html#flash.image.segmentation.data.SemanticSegmentationData
@@ -41,7 +46,7 @@ optimizer_params = {
 
 lr_scheduler = torch.optim.lr_scheduler.MultiStepLR
 scheduler_params = {
-    'milestones': [10,30,60],
+    'milestones': [50,100,120],
     'gamma': 0.1
 }
 
@@ -82,7 +87,7 @@ model = SemanticSegmentation(
 # --------------------------------------------
 # 3. Create the trainer and finetune the model
 # --------------------------------------------
-trainer = flash.Trainer(max_epochs=200) # , gpus='9'
+trainer = flash.Trainer(max_epochs=200, gpus='4') # , gpus='9'
 trainer.fit(model, datamodule=datamodule)
 
 # --------------------------------------------
