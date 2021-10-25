@@ -69,6 +69,24 @@ datamodule = ImageClassificationData.from_datasets(
     val_transform = train_transforms,
     test_transform = test_transforms
 )
+# datamodule = ImageClassificationData.from_folders(
+    # train_folder='./data/train',
+    # # val_dataset=val,
+    # test_folder='./data/test',
+    # val_split = 0.1,
+    # batch_size = bs,
+    # num_workers = 8,
+    # train_transform = train_transforms,
+    # val_transform = train_transforms,
+    # test_transform = test_transforms
+# )
+# |---- train
+# |----|---- cls1
+# |----|----|---- XX.jpg
+# |----|----|---- ...
+# |----|---- cls2
+# |----|---- ....
+# |----|---- clsn
 
 # --------------------------------------------
 # 2. Build the model using desired Task
